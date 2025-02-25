@@ -63,7 +63,6 @@ int binarySearch(const std::vector<StateClimate>& data, int fips){
     return -1;
 }
 
-
 int main() {
     std::vector<StateClimate> climateData;
     std::ifstream file("climdiv_state_year.csv");
