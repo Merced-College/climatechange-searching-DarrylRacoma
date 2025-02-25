@@ -91,11 +91,13 @@ int main() {
     for (const auto &entry : climateData) {
         entry.display();
     }
-
+    
+    // Search for FIPS code
     int fipsToSearch;
     std::cout << "Enter FIPS code to search:";
     std::cin >> fipsToSearch;
 
+    // Search for FIPS code
     int index = binarySearch(climateData, fipsToSearch);
     if(index != -1){
         climateData[index].display();
