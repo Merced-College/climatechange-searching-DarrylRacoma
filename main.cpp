@@ -45,6 +45,25 @@ class StateClimate {
     << ", Temp (F): " << temp << ", Temp (C): " << tempc << std::endl;
     }
 
+// Binary Search
+int binarySearch(const std::vector<StateClimate>& data, int fips){
+    int left = 0;
+    int right = data.size() - 1;
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        if (data[mid].getFips() == fips) {
+            return mid;
+        }
+        if (data[mid].getFips() < fips) {
+            left = mid + 1;
+        } else {
+            right = mid - 1;
+        }
+    }
+    return -1;
+}
+
+
 int main() {
     std::vector<StateClimate> climateData;
     std::ifstream file("climdiv_state_year.csv");
@@ -71,6 +90,17 @@ int main() {
     // Display data
     for (const auto &entry : climateData) {
         entry.display();
+    }
+
+    int fipsToSearch;
+    std::cout << "Enter FIPS code to search:";
+    std::cin >> fipsToSearch;
+
+    int index = binarySearch(climateData, fipsToSearch);
+    if(index != -1){
+        climateData[index].display();
+    }else{
+        std::cout << "FIPS code not found!" << std::endl;
     }
 
     return 0;
